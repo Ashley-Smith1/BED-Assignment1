@@ -16,8 +16,8 @@ export function calculatePortfolioPerformance(
 
     const performanceSummary = 
         percentageChange > 20
-            ? `The portfolio has gained significantly with a profit of $${profitOrLoss}.`
-            : `The portfolio has performed poorly.`;
+            ? "Excellent performance! Your investments are doing great."
+            : "The portfolio has performed poorly.";
 
     return {
         initialInvestment,
