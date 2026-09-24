@@ -40,4 +40,23 @@ describe("calculatePortfolioPerformance", () => {
         );
     });
 
+    it("should calculate a solid gain", () => {
+        // Arrange
+        const initialInvestment = 10000;
+        const currentValue = 12999.9;
+
+        // Act
+        const result = calculatePortfolioPerformance(
+            initialInvestment,
+            currentValue
+    );
+
+        // Assert
+        expect(result.profitOrLoss).toBeCloseTo(2999.9);
+        expect(result.percentageChange).toBeCloseTo(29.999);
+        expect(result.performanceSummary).toBe(
+            "Solid gain. Keep monitoring your investments."
+    );
+});
+
 });
