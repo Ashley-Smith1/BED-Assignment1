@@ -1,14 +1,14 @@
-import request from "supertest";
+import request, { Response } from "supertest";
 import app from "../src/app";
 
 describe("API endpoints", () => {
 
     it("should return a healthy status", async () => {
         // Arrange
-        const expectedStatus = "OK";
+        const expectedStatus: string = "OK";
 
         // Act
-        const response = await request(app).get("/api/v1/health");
+        const response: Response = await request(app).get("/api/v1/health");
 
         // Assert
         expect(response.status).toBe(200);
@@ -19,7 +19,7 @@ describe("API endpoints", () => {
         // Arrange
 
         // Act
-        const response = await request(app).get("/api/v1/health");
+        const response: Response = await request(app).get("/api/v1/health");
 
         // Assert
         expect(response.body.uptime).toBeDefined();
@@ -29,11 +29,11 @@ describe("API endpoints", () => {
 
     it("should return portfolio performance results", async () => {
         // Arrange
-        const initialInvestment = 10000;
-        const currentValue = 16000;
+        const initialInvestment: number = 10000;
+        const currentValue: number = 16000;
 
         // Act
-        const response = await request(app).get(
+        const response: Response = await request(app).get(
             `/api/v1/portfolio/performance?initialInvestment=${initialInvestment}&currentValue=${currentValue}`
         );
 
@@ -45,11 +45,11 @@ describe("API endpoints", () => {
 
     it("should handle no change in portfolio performance", async () => {
         // Arrange
-        const initialInvestment = 10000;
-        const currentValue = 10000;
+        const initialInvestment: number = 10000;
+        const currentValue: number = 10000;
 
         // Act
-        const response = await request(app).get(
+        const response: Response = await request(app).get(
             `/api/v1/portfolio/performance?initialInvestment=${initialInvestment}&currentValue=${currentValue}`
         );
 

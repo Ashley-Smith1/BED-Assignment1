@@ -1,6 +1,6 @@
 import express from "express";
-import { calculatePortfolioPerformance } from "./portfolio/portfolioPerformance";
-const app = express();
+import { calculatePortfolioPerformance, PortfolioPerformance } from "./portfolio/portfolioPerformance";
+const app: express.Application = express();
 app.use(express.json());
 app.get("/api/v1/health", (req, res) => {
     res.status(200).json({ 
@@ -12,10 +12,10 @@ app.get("/api/v1/health", (req, res) => {
 });
 
 app.get("/api/v1/portfolio/performance", (req, res) => {
-    const initialInvestment = Number(req.query.initialInvestment);
-    const currentValue = Number(req.query.currentValue);
+    const initialInvestment: number = Number(req.query.initialInvestment);
+    const currentValue: number = Number(req.query.currentValue);
 
-    const result = calculatePortfolioPerformance(initialInvestment, currentValue);
+    const result: PortfolioPerformance = calculatePortfolioPerformance(initialInvestment, currentValue);
     res.status(200).json(result);
 });
 

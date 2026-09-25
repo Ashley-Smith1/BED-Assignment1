@@ -1,14 +1,17 @@
-import { calculatePortfolioPerformance } from "../src/portfolio/portfolioPerformance";
+import {
+    calculatePortfolioPerformance,
+    PortfolioPerformance,
+} from "../src/portfolio/portfolioPerformance";
 
 describe("calculatePortfolioPerformance", () => {
 
     it("should calculate an excellent gain", () => {
         // Arrange
-        const initialInvestment = 10000;
-        const currentValue = 16000;
+        const initialInvestment: number = 10000;
+        const currentValue: number = 16000;
 
         // Act
-        const result = calculatePortfolioPerformance(
+        const result: PortfolioPerformance = calculatePortfolioPerformance(
             initialInvestment,
             currentValue
         );
@@ -23,11 +26,11 @@ describe("calculatePortfolioPerformance", () => {
 
     it("should handle no change in the portfolio", () => {
         // Arrange
-        const initialInvestment = 10000;
-        const currentValue = 10000;
+        const initialInvestment: number = 10000;
+        const currentValue: number = 10000;
 
         // Act
-        const result = calculatePortfolioPerformance(
+        const result: PortfolioPerformance = calculatePortfolioPerformance(
             initialInvestment,
             currentValue
         );
@@ -42,21 +45,21 @@ describe("calculatePortfolioPerformance", () => {
 
     it("should calculate a solid gain", () => {
         // Arrange
-        const initialInvestment = 10000;
-        const currentValue = 12999.9;
+        const initialInvestment: number = 10000;
+        const currentValue: number = 12999.9;
 
         // Act
-        const result = calculatePortfolioPerformance(
+        const result: PortfolioPerformance = calculatePortfolioPerformance(
             initialInvestment,
             currentValue
-    );
+        );
 
         // Assert
         expect(result.profitOrLoss).toBeCloseTo(2999.9);
         expect(result.percentageChange).toBeCloseTo(29.999);
         expect(result.performanceSummary).toBe(
             "Solid gain. Keep monitoring your investments."
-    );
-});
+        );
+    });
 
 });
