@@ -3,9 +3,6 @@ on:
     pull_request:
         branches:
             - main
-permissions:
-    contents: read
-    pull-requests: write
 jobs:
     lint:
         runs-on: ubuntu-latest
@@ -24,7 +21,11 @@ jobs:
             - name: Install ESLint for development
               run: npm install --save-dev eslint @eslint/js @types/eslint__js typescript typescript-eslint
 
-            # Step 4: Run ESLint with Reviewdog
+            # Step 4: Run ESLint normally
+            - name: Check ESLint errors
+              run: npx eslint -c eslint.config.mjs "**/*.{ts,tsx}"
+
+            # Step 5: Run ESLint with Reviewdog
             - name: Run ESLint with Reviewdog
               uses: reviewdog/action-eslint@v1
               with:
